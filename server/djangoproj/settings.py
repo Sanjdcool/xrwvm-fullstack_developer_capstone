@@ -27,8 +27,28 @@ SECRET_KEY =\
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS=['localhost','https://sanjaygupta-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai']
-CSRF_TRUSTED_ORIGINS=['https://sanjaygupta-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai']
+# ALLOWED_HOSTS=['localhost','https://sanjaygupta-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai']
+# CSRF_TRUSTED_ORIGINS=['https://sanjaygupta-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai']
+ALLOWED_HOSTS = [
+    'localhost',
+    'sanjaygupta-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://sanjaygupta-8000.theianext-0-labs-prod-misc-tools-us-east-0.proxy.cognitiveclass.ai',
+]
+
+USE_X_FORWARDED_HOST = True
+SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+# ALLOWED_HOSTS = ['localhost',
+#                  "https://sanjaygupta-8000."
+#                  "theianext-0-labs-prod-misc-tools-us-east-0.proxy"
+#                  ".cognitiveclass.ai/"]
+# CSRF_TRUSTED_ORIGINS = ['https://sanjaygupta-8000.'
+#                         'theianext-0-labs-prod-misc-tools-us-east-0.proxy'
+#                         '.cognitiveclass.ai/']
+
 
 # ALLOWED_HOSTS = ['localhost',
 #                  "https://akinbamigben-8000."
@@ -57,6 +77,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',   # <--- Add this line
     'django.middleware.common.CommonMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
